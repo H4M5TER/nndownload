@@ -4,45 +4,43 @@
 
 nndownload allows you to download videos, images, manga, and process other links from [Niconico](http://nicovideo.jp), formerly known as Nico Nico Douga. Unlike other existing downloaders, this program communicates wth DMC (Dwango Media Cluster) servers to ensure access to high quality videos.
 
+## Features
+
+- Download videos with comments, thumbnails, and metadata
+- Download Seiga images and manga with metadata
+- Download channel videos or blogs with metadata
+- Download mylists
+- Download a user's videos, mylists, illustrations, or manga
+- Generate stream URLs for Niconama broadcasts
+- Download videos faster using multiple threads
+- Process lists of URLs from text files
+
+## Installation
+
+### Binary
+
+Binaries for Windows are available on the [releases page](https://github.com/AlexAplin/nndownload/releases).
+
+### Module
+
+```bash
+pip install nndownload
+```
+
 ## Disclaimers
-- If you do not have a [premium account](https://secure.nicovideo.jp/secure/premium_detail/), you may download low quality videos during economy mode hours (typically 12 PM - 2 AM JST) or during other periods of high traffic.
+
 - When downloading without a login (using -g/--no-login), some videos may not be available for download or may only be available in a lower quality.
+- If you do not have a [premium account](https://secure.nicovideo.jp/secure/premium_detail/), you may download low quality videos during economy mode hours (typically 12 PM - 2 AM JST) or during other periods of high traffic.
 - Running multiple download sessions on the same connection may lead to temporary blocks or throttling.
 - These functions are not currently supported:
   - Downloading Niconama timeshifts
   - Downloading Seiga thumbnails and comments
   - Downloading channel blog comments
 
-## Features
- - Download videos with comments, thumbnails, and metadata
- - Download Seiga images and manga with metadata
- - Download channel videos or blogs with metadata
- - Download mylists
- - Download a user's videos, mylists, illustrations, or manga
- - Generate stream URLs for Niconama broadcasts
- - Download videos faster using multiple threads
- - Process lists of URLs from text files
-
-## Requirements
-### Python version
-- Python >=3.5.3
-
-### Dependencies
-- aiohttp
-- aiohttp-socks
-- beautifulsoup4
-- requests
-- mutagen
-
-# Installation
-```bash
-pip install nndownload
-```
-
-Binaries for Windows are available on the [releases page](https://github.com/AlexAplin/nndownload/releases).
-
 ## Usage
+
 ### CLI
+
 ```
 usage: nndownload.py [options] input
 
@@ -87,6 +85,7 @@ download options:
 ```
 
 ### Module
+
 ```python
 import nndownload
 
@@ -96,7 +95,10 @@ nndownload.execute("-g", "-o", output_path, url)
 ```
 
 ### Custom Output Paths
-Custom filepaths are constructed like standard Python template strings, e.g. `{uploader} - {title}.{ext}`. For Seiga manga, the output path should be the template for a chapter directory, e.g. `{manga_id}\{id} - {title}`. The available options are:
+
+Custom filepaths are constructed like standard Python template strings, e.g. `{uploader} - {title}.{ext}`. For Seiga manga, the output path should be the template for a chapter directory, e.g. `{manga_id}\{id} - {title}`.
+
+The available options are:
 
 - comment_count (videos, images, manga, articles)
 - description (videos, images, manga)
@@ -126,13 +128,12 @@ Custom filepaths are constructed like standard Python template strings, e.g. `{u
 - thumbnail_url (videos)
 
 ### Using Stream Links
+
 After generating a stream URL, the program must be kept running to keep the stream active. [mpv](https://github.com/mpv-player/mpv) and [streamlink](https://github.com/streamlink/streamlink) are the best options for playing generated stream URLs. Other programs that use aggressive HLS caching and threading may also work.
 
 `mpv https://...`
 `streamlink https://... best`
 
-## Known Bugs
-- Check open issues.
-
 ## License
+
 This project is licensed under the MIT License.
